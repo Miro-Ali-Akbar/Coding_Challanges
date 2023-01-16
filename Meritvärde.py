@@ -2,11 +2,23 @@
 def program(linje):
 	points = 0
 	hours = 0
+	egenlin = {}
 	if linje == "a":
-		for kurs in natur:
-			points = points + betyg[str(input("Vad fick du för betyg i " + kurs + "?: "))] * natur[kurs]
-			hours = hours + natur[kurs]
-	print(points/hours + float(input("hur mycket bonuspoäng fick du? \n")))
+		lin = natur
+	elif linje == "b":
+		lin = sam
+	else:
+		print("du får nu skriva in alla dina kurser och deras poäng")
+		while True:
+			kurs = input("Vilken kurs läste du? \n Om du är klar skriv \"Done\" \n ")
+			if kurs == "Done":
+				break
+			egenlin.update({kurs: int(input("Hur många poäng var den? \n"))})
+		lin = egenlin
+	for kurs in lin:
+		points = points + betyg[str(input("Vad fick du för betyg i " + kurs + "?: "))] * lin[kurs]
+		hours = hours + lin[kurs]
+	print("du fick " + str(round(points/hours + float(input("hur mycket bonuspoäng fick du? \n")), 2)) + " meritpoäng")
 
 betyg = {
 	"A": 20,
@@ -38,6 +50,7 @@ natur = {
 	"Svenska 3": 100,
 	"Engelska 5": 100,
 	"Engelska 6": 100,
+	"Moderna språk": 100,
 	"Historia 1": 100,
 	"Samhällskunskap 1": 100,
 	"Religion 1": 50,
@@ -48,5 +61,32 @@ natur = {
 	"Valfri kurs 3": 100,
 	"Valfri kurs 4": 100
 }
+sam = {
+	"Engelska 5": 100,
+	"Engelska 6": 100,
+	"Historia 1b": 100,
+	"Historia 2": 100,
+	"Idrott och hälsa 1": 100,
+	"Matte 1b": 100,
+	"Matte 2b": 100,
+	"Naturvetenskap 1b": 100,
+	"Samhällskunskap 1b": 100,
+	"Samhällskunskap 2": 100,
+	"Samhällskunskap 3": 100,
+	"Religion 1": 50,
+	"Religion 2": 50,
+	"Svenska 1": 100,
+	"Svenska 2": 100,
+	"Svenska 3": 100,
+	"Geografi 1": 100,
+	"Moderna språk 1": 100,
+	"Moderna språk 2": 100,
+	"Psykologi 1": 50,
+	"Filosofi 1": 50,
+	"Valfri kurs 1": 100,
+	"Valfri kurs 2": 100,
+	"Valfri kurs 3": 100,
+	"Valfri kurs 4": 100
 
-program(input("Vilken linje gå du på?\n a - Natur \n b - sam \n c - något annat \n"))
+}
+program(input("Vilken linje gå du på?\n a - Natur natur \n b - sam sam \n c - något annat \n"))
